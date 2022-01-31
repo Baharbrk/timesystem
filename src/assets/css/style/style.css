@@ -1,0 +1,73 @@
+#navbar {
+    margin-top: 10px;
+    font-size: larger;
+}
+.nav-item {
+    padding: 4px;
+}
+
+#loginContent {
+    margin-top: 50px;
+    padding: 20px;
+    border: 2px solid gray; 
+    overflow: hidden;
+}
+#loginButton {
+    margin-top: 10px;
+    width: 110px;
+    height: 40px;
+    float: right;
+}
+.timeEntryContent {
+    margin-top: 40px;
+}
+.timeSelect {
+    margin-left: 80px;
+}
+.showTime {
+    margin-top: 30px;
+}
+.zeitErfassungsButton {
+    margin-left: 100px;
+    margin-top: 90px;
+    width: 140px;
+    background-color: cadetblue;
+}
+.showAddedTimes {
+    background-color: cadetblue;
+    margin-left: 40px;
+}
+h2 {
+    margin-top: 30px;
+    margin-left: 15px;
+}
+.date {
+    margin-left: 15px;
+    width: 270px;
+}
+#showTimeTable {
+    margin-top: 35px;
+}
+.timeCheck {
+    margin-top: 20px;
+}
+.highlight {
+    background-color: cadetblue;
+    font-weight: bold;
+}
+.activeMenuItem {
+    background-color: cadetblue;
+}
+#showZeitAuswerten {
+    margin-top: 20px;
+}
+#zeitErfassenDate {
+    margin-left: 15px;
+}
+.zeitCalendarTable {
+    margin-top: 20px;
+    margin-right: 50px;
+}
+.verwaltung {
+    background-color: cadetblue;
+}

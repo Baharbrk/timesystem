@@ -1,0 +1,111 @@
+#app {
+    font-family: Times New Roman;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+}
+
+  #nav {
+    padding: 30px;
+  }
+
+  #nav a {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+
+  #nav a.router-link-exact-active {
+    color: #42b983;
+  }
+
+
+#navbar {
+    margin-top: 10px;
+    font-size: larger;
+}
+.nav-item {
+    padding: 4px;
+}
+
+#loginContent {
+    border: 1px solid;
+    margin: 90px auto;
+    width: 40%;
+    padding: 35px;
+    overflow: hidden;
+}
+#loginButton {
+    margin-top: 20px;
+    width: 40%;
+}
+.timeEntryContent {
+    margin-top: 40px;
+}
+.timeSelect {
+    margin-left: 80px;
+}
+.showTime {
+    margin-top: 30px;
+}
+.zeitErfassungsButton {
+    float: left;
+    margin-top: 20px;
+    width: 140px;
+    background-color: cadetblue;
+}
+.showAddedTimes {
+    background-color: cadetblue;
+    margin-left: 40px;
+}
+h2 {
+    margin-top: 30px;
+    margin-left: 15px;
+}
+.date {
+    margin-left: 15px;
+    width: 270px;
+}
+#showTimeTable {
+    margin-top: 35px;
+}
+.timeCheck {
+    margin-top: 20px;
+}
+.highlight {
+    background-color: cadetblue;
+    font-weight: bold;
+}
+.activeMenuItem {
+    background-color: cadetblue;
+}
+#showZeitAuswerten {
+    margin-top: 20px;
+}
+#zeitErfassenDate {
+    margin-left: 10px;
+}
+.zeitCalendarTable {
+    margin-top: 20px;
+    margin-right: 50px;
+}
+.verwaltung {
+    background-color: cadetblue;
+}
+
+.modal-mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    display: table;
+    transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
