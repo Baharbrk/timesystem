@@ -143,7 +143,7 @@ export default Vue.extend({
                 })
                 .catch(() => {
                     alert(
-                        "Neuen User anlegen funktioniert gerade nicht, bitte versuchen Sie es später erneut!"
+                        "Something went wrong"
                     );
                 });
         },
@@ -188,7 +188,7 @@ export default Vue.extend({
                 })
                 .catch(() => {
                     alert(
-                        "User anzeigen funktioniert gerade nicht, bitte versuchen Sie es später erneut!"
+                        "Something went wrong"
                     );
                 });
 
