@@ -1,10 +1,10 @@
-#app {
+/* #app {
     font-family: Times New Roman;
     font-size: 17px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-}
+} */
 
   #nav {
     padding: 30px;
@@ -65,9 +65,6 @@ h2 {
 .date {
     margin-left: 15px;
     width: 270px;
-}
-#showTimeTable {
-    margin-top: 35px;
 }
 .timeCheck {
     margin-top: 20px;

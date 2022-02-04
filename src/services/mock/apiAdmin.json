@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "username": "bahar",
+    "firstname": "bahareh",
+    "lastname": "brk",
+    "password": "1234",
+    "targetHours": 8,
+    "admin": true,
+    "isActive": true
+  },
+  {
+    "id": 2,
+    "username": "sina",
+    "firstname": "sina",
+    "lastname": "brkk",
+    "password": "1234",
+    "targetHours": 7,
+    "admin": false,
+    "isActive": false
+  }
+]

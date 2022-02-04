@@ -6,24 +6,16 @@ export default Vue.extend({
         searchparameter: null,
         userFirstName: '',
         userlastName: '',
-        username: '',
         userPassword: '',
         workHours: '',
-        activeUser: '',
         addUserModal: false,
         users: [],
-        showEditUser:false,
         selectedUser: null,
         workTime: [10, 20, 30, 40]
     }),
     methods: {
         selectUser(user) {
             this.selectedUser = user;
-            this.userFirstName = user.vorname;
-            this.userlastName = user.nachname;
-            this.workHours = user.arbeitstunden;
-            this.username = user.username;
-            this.activeUser = user.aktiv;
             this.addInfoToInputsVerwaltung();
         },
         addInfoToInputsVerwaltung() {
@@ -99,11 +91,6 @@ export default Vue.extend({
                 .then((response) => {
                     const users = [];
                     response.forEach(function (value) {
-                        if (value.isActive === true) {
-                            value.isActive = 'Active';
-                        } else {
-                            value.isActive = 'Not Active';
-                        }
                         users.push({
                             id: value.id,
                             username: value.username,
@@ -143,7 +130,7 @@ export default Vue.extend({
                 })
                 .catch(() => {
                     alert(
-                        "Something went wrong"
+                        "Neuen User anlegen funktioniert gerade nicht, bitte versuchen Sie es später erneut!"
                     );
                 });
         },
@@ -156,39 +143,72 @@ export default Vue.extend({
                 return;
             }
 
-            var userName = this.username;
-            var vorname = this.userFirstName;
-            var nachname = this.userlastName;
-            var arbeitspensum = this.workHours;
+            var userName = prompt(
+                "Bitte geben Sie den Username an!\n\nBisheriger Wert: " +
+                this.selectedUser.username,
+                this.selectedUser.username
+            );
+
+            var vorname = prompt(
+                "Bitte geben Sie den Vornamen an!\n\nBisheriger Wert: " + this.selectedUser.vorname,
+                this.selectedUser.vorname
+            );
+            var nachname = prompt(
+                "Bitte geben Sie den Nachnamen an!\n\nBisheriger Wert: " + this.selectedUser.nachname,
+                this.selectedUser.nachname
+            );
+            var passwort = prompt(
+                "Bitte geben Sie das Passwort an!\n\nBisheriger Wert: " + this.selectedUser.passwort,
+                this.selectedUser.passwort
+            );
+            var arbeitspensum = prompt(
+                "Bitte geben Sie das Arbeitspensum an!\nGeringfügig = 10\nTeilzeit = 20 oder 30\nVollzeit = 40\n\nBisheriger Wert: " +
+                this.selectedUser.arbeitstunden,
+                this.selectedUser.arbeitstunden
+            );
+
             arbeitspensum = parseInt(arbeitspensum);
-            var aktiv = this.activeUser;
+
+            var istadmin = prompt(
+                "Soll der User Rechte als Admin haben?\nTrue\nFalse\n\nBisheriger Wert: " +
+                this.selectedUser.istAdmin,
+                this.selectedUser.istAdmin
+            ).toLowerCase();
+
+            istadmin = istadmin === "true";
+
+            var aktiv = prompt(
+                "Soll der User aktiv sein?\nTrue\nFalse\n\nBisheriger Wert: " + this.selectedUser.aktiv,
+                this.selectedUser.aktiv
+            ).toLowerCase();
 
             aktiv = aktiv === "true";
+
+            if (!(vorname !== '' && nachname !== '' && passwort !== '' && (this.workTime.includes(arbeitspensum)))) {
+                alert(
+                    "Sie haben eine Eingabe vergessen oder den Vorgang abgebrochen!\n\nVorgang abgebrochen!"
+                );
+                return;
+            }
 
             service
                 .changeUsers({
                     id: this.selectedUser.id,
                     firstname: vorname,
                     lastname: nachname,
-                    password: this.selectedUser.passwort,
+                    password: passwort,
                     targethours: arbeitspensum,
-                    admin: this.selectedUser.istadmin,
+                    admin: istadmin,
                     isActive: aktiv,
                     Username: userName,
                 })
                 .then(() => {
+                    alert("User erfolgreich bearbeitet!");
                     this.showUsers();
-                    this.showEditUser = false;
-                    this.username = '';
-                    this.userFirstName = '';
-                    this.userlastName = '';
-                    this.workHours = '';
-                    this.activeUser = '';
-                   
                 })
                 .catch(() => {
                     alert(
-                        "Something went wrong"
+                        "User anzeigen funktioniert gerade nicht, bitte versuchen Sie es später erneut!"
                     );
                 });
 

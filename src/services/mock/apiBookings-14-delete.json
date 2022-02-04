@@ -1,0 +1,35 @@
+{
+    "id": 14,
+    "bookIn": {
+        "ticks": 701400000000,
+        "days": 0,
+        "hours": 19,
+        "milliseconds": 0,
+        "minutes": 29,
+        "seconds": 0,
+        "totalDays": 0.8118055555555556,
+        "totalHours": 19.483333333333334,
+        "totalMilliseconds": 70140000,
+        "totalMinutes": 1169,
+        "totalSeconds": 70140
+    },
+    "bookOut": {
+        "hasValue": true,
+        "value": {
+            "ticks": 849000000000,
+            "days": 0,
+            "hours": 23,
+            "milliseconds": 0,
+            "minutes": 35,
+            "seconds": 0,
+            "totalDays": 0.9826388888888888,
+            "totalHours": 23.583333333333332,
+            "totalMilliseconds": 84900000,
+            "totalMinutes": 1415,
+            "totalSeconds": 84900
+        }
+    },
+    "category": "Pause",
+    "userId": 1,
+    "date": "2022-01-29T00:00:00"
+}

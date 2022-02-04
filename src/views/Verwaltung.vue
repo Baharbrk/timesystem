@@ -1,29 +1,22 @@
 <template>
     <div class="container">
         <div class="row" style="margin-top: 20px; margin-bottom: 20px">
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <button class="btn btn-primary mb-2 newUsers verwaltung"
                         style="width: 190px; margin-right: 30px"
                         @click="addUserModal=true;">
-                    Add User
+                    Neuen User anlegen
                 </button>
             </div>
-            <div class="col-md-6" style="float:right">
-                <label for="fname" style="margin-right: 7px"><b>Search</b></label>
-                <input id="searchField"
-                       v-model="searchparameter"
-                       name="searchField"
-                       style="margin-right: 10px"
-                       type="text"
-                       @keyup.enter="searchUsers($event)"
-                       />
-                <button class="btn btn-primary mb-2 searchUsers verwaltung"
-                         v-on:click="searchUsers($event)">
-                    Search User
+            <div class="col-md-2">
+                <button class="btn btn-primary mb-2 changeUsers verwaltung"
+                        style="margin-left: 20px"
+                        @click="changeUsers($event)">
+                    User bearbeiten
                 </button>
             </div>
-            <div v-if="showEditUser">
-                <transition name="showEditUser">
+            <div v-if="showModal">
+                <transition name="modal">
                     <div class="modal-mask">
                         <div class="modal-wrapper">
                             <div class="modal-dialog">
@@ -41,33 +34,25 @@
                                                   action="#"
                                                   @submit="bookTime($event)">
                                                 <div class="form-group">
-                                                    <label for="username">Username</label>
-                                                    <input v-model="username" type="text" class="form-control" />
+                                                    <label for="Kommen">Firstname</label>
+                                                    <input v-model="arrive" type="time" class="form-control arrive" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="firstname">Firstname</label>
-                                                    <input v-model="userFirstName" type="text" class="form-control" />
+                                                    <label for="Gehen">Lastname</label>
+                                                    <input v-model="leave" type="time" class="form-control leave" />
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="lastname">Lastname</label>
-                                                    <input v-model="userlastName" type="text" class="form-control" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="workinghours">Working hours</label>
-                                                    <input v-model="workHours" type="text" class="form-control" />
-                                                </div>
-                                                <div>
-                                                    <label for="active">Active User?</label>
-                                                    <select v-model="activeUser"
-                                                            class="form-control"
-                                                            required>
-                                                        >
-                                                        <option value=true>Active</option>
-                                                        <option value=false>Not Active</option>
-                                                    </select>
-                                                </div>
-
-                                                <button class="btn btn-primary zeitErfassungsButton" @click="changeUsers($event)">Edit User</button>
+                                             
+                                                <label for="Kategorie">Kategorie:</label>
+                                                <select v-model="filterCategory"
+                                                        class="form-control filterCategory"
+                                                        required>
+                                                    <option selected value="Choose-a-category">
+                                                        Choose a category
+                                                    </option>
+                                                    <option value="Arbeitszeit">Worktime</option>
+                                                    <option value="Pause">Break</option>
+                                                </select>
+                                                <button class="btn btn-primary zeitErfassungsButton">Log</button>
                                             </form>
                                         </div>
                                     </div>
@@ -121,6 +106,18 @@
                     </div>
                 </transition>
             </div>
+            <div class="col-md-6 mb-2">
+                <label for="fname" style="margin-right: 7px"><b>Suche</b></label>
+                <input id="searchField"
+                       v-model="searchparameter"
+                       name="searchField"
+                       style="margin-right: 10px"
+                       type="text" />
+                <button class="btn btn-primary mb-2 searchUsers verwaltung"
+                        v-on:click="searchUsers($event)">
+                    User suchen
+                </button>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-8 timeSelect">
@@ -128,11 +125,12 @@
                     <table class="table UserTable">
                         <thead>
                             <tr>
+                                <th scope="col">ID</th>
                                 <th scope="col">Username</th>
-                                <th scope="col">Firstname</th>
-                                <th scope="col">Lastname</th>
-                                <th scope="col">Work hours</th>
-                                <th scope="col">active</th>
+                                <th scope="col">Vorname</th>
+                                <th scope="col">Nachname</th>
+                                <th scope="col">Arbeitstunden</th>
+                                <th scope="col">Aktiv</th>
                             </tr>
                         </thead>
                         <tbody class="verwaltungTable">
@@ -140,12 +138,13 @@
                                 :key="user.id"
                                 :class="selectedUser && selectedUser.id === user.id ? 'highlight' : ''"
                                 @click="selectUser(user)">
+                                <td>{{ user.id }}</td>
                                 <td>{{ user.username }}</td>
                                 <td>{{ user.vorname }}</td>
                                 <td>{{ user.nachname }}</td>
                                 <td>{{ user.arbeitstunden }}</td>
                                 <td>{{ user.aktiv }}</td>
-                                <td><img style="width:25px" src="../assets/pics/edit.png" @click="selectUser(user); showEditUser=true"></td>
+                                <td><img style="width:25px" src="../assets/pics/edit.png" @click="selectBooking(entry.id); showCorrectModal=true"></td>
                             </tr>
                         </tbody>
                     </table>

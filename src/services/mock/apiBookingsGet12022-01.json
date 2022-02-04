@@ -1,0 +1,38 @@
+[
+  {
+    "username": null,
+    "userID": 1,
+    "istArbeitsZeit": 4,
+    "sollArbeitsZeit": 8,
+    "differenzArbeitsZeit": -4,
+    "totalDifferenzArbeitsZeit": 0,
+    "date": "1/18/2022"
+  },
+  {
+    "username": null,
+    "userID": 1,
+    "istArbeitsZeit": 12.066667,
+    "sollArbeitsZeit": 8,
+    "differenzArbeitsZeit": 4.0666666,
+    "totalDifferenzArbeitsZeit": 0,
+    "date": "1/24/2022"
+  },
+  {
+    "username": null,
+    "userID": 1,
+    "istArbeitsZeit": 3,
+    "sollArbeitsZeit": 8,
+    "differenzArbeitsZeit": -5,
+    "totalDifferenzArbeitsZeit": 0,
+    "date": "1/25/2022"
+  },
+  {
+    "username": null,
+    "userID": 1,
+    "istArbeitsZeit": 2,
+    "sollArbeitsZeit": 8,
+    "differenzArbeitsZeit": -6,
+    "totalDifferenzArbeitsZeit": 0,
+    "date": "1/26/2022"
+  }
+]
