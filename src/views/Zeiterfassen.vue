@@ -29,16 +29,20 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <i
-                      class="bi bi-exclamation-triangle-fill fs-3 text-warning"
+                      class="
+                        bi bi-exclamation-triangle-fill
+                        fs-3
+                        text-warning
+                        pe-2
+                      "
                     ></i>
-                    <span class="px-1"
-                      >Confirm deleting the following item</span
-                    >
+                    <span>Confirm deleting the following item</span>
                     <button
                       type="button"
                       class="btn-close"
                       data-bs-dismiss="modal"
                       aria-label="Close"
+                      @click="showDeleteModal = false"
                     />
                   </div>
                   <div class="modal-body">
@@ -68,14 +72,14 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h4 class="modal-title">Add time</h4>
+                    <div class="modal-title">
+                      <span>Add Time</span>
+                    </div>
                     <button
                       type="button"
-                      class="close"
+                      class="btn-close"
                       @click="showModal = false"
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                    />
                   </div>
                   <div class="modal-body">
                     <div>
@@ -114,18 +118,26 @@
                         <label for="Kategorie">Kategorie:</label>
                         <select
                           v-model="filterCategory"
-                          class="form-control filterCategory"
+                          class="form-select filterCategory"
                           required
                         >
-                          <option selected value="Choose-a-category">
+                          <option selected value="Choose-a-category" disabled>
                             Choose a category
                           </option>
                           <option value="Arbeitszeit">Worktime</option>
                           <option value="Pause">Break</option>
                         </select>
-                        <button class="btn btn-primary zeitErfassungsButton">
-                          Log
-                        </button>
+                        <div class="modal-footer">
+                          <button
+                            class="btn btn-secondary zeitErfassungsButton"
+                            @click="showModal = false"
+                          >
+                            Cancel
+                          </button>
+                          <button class="btn btn-primary zeitErfassungsButton">
+                            Log
+                          </button>
+                        </div>
                       </form>
                     </div>
                   </div>
@@ -142,14 +154,16 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h4 class="modal-title">Correct time</h4>
+                    <div class="modal-title">
+                      <i class="bi bi-pencil pe-2"></i><span>Correct time</span>
+                    </div>
                     <button
                       type="button"
-                      class="close"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
                       @click="showCorrectModal = false"
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                    />
                   </div>
                   <div class="modal-body">
                     <form
@@ -206,7 +220,7 @@
                       <label for="Kategorie">Kategorie:</label>
                       <select
                         v-model="filterCategory"
-                        class="form-control filterCategory"
+                        class="form-select filterCategory"
                         required
                         :disabled="!selectedBooking"
                       >
@@ -216,13 +230,21 @@
                         <option value="Arbeitszeit">Worktime</option>
                         <option value="Pause">Break</option>
                       </select>
-
-                      <button
-                        class="btn btn-primary zeitErfassungsButton"
-                        :disabled="!selectedBooking"
-                      >
-                        Korrigieren
-                      </button>
+                      <div class="modal-footer">
+                        <button
+                          class="btn btn-secondary zeitErfassungsButton"
+                          :disabled="!selectedBooking"
+                          @click="showCorrectModal = false"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          class="btn btn-primary zeitErfassungsButton"
+                          :disabled="!selectedBooking"
+                        >
+                          Korrigieren
+                        </button>
+                      </div>
                     </form>
                   </div>
                 </div>
@@ -243,11 +265,14 @@
         <div class="input-group w-25">
           <span class="input-group-text"><i class="bi bi-funnel-fill" /></span>
           <input
+            v-model="filterDate"
             type="date"
             class="form-control"
             placeholder="select date to filter"
           />
-          <button class="btn btn-primary">filter</button>
+          <button class="btn btn-primary" @click="showTimeEntries($event)">
+            filter
+          </button>
         </div>
       </div>
       <div id="showTimeTable" class="mt-2">

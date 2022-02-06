@@ -43,8 +43,8 @@ export default Vue.extend({
                     .then((response) => {
                         this.users = response;
                     })
-                    .catch(function () {
-                        alert("not working");
+                    .catch((e) => {
+                        console.log(e)
                     });
             }
         },
