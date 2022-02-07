@@ -40,15 +40,16 @@
             </li>
           </ul>
         </div>
-          <span id="label_user">{{ username || "nicht eingeloggt" }}</span>
-          <a
-            v-if="username"
-            class="nav-link d-md-none d-lg-block logout"
-            v-on:click="logOutUser"
-            href="#"
-            title="Log out"
-            ><i class="bi bi-box-arrow-right fs-3"></i
-          ></a>
+        <span id="label_user">{{ username || "nicht eingeloggt" }}</span>
+        <a
+          v-if="username"
+          class="nav-link d-md-none d-lg-block logout"
+          v-on:click="logOutUser"
+          href="#"
+          title="Log out"
+          >
+          <i class="bi bi-box-arrow-right fs-3"
+        /></a>
       </div>
     </nav>
     <router-view name="Zeiterfassen" :users="users"></router-view>

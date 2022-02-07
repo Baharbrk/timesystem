@@ -1,25 +1,29 @@
 <template>
   <div class="container">
-    <div class="row" style="margin-top: 40px">
-      <div class="form-group mb-2">
-        <label for="Username" id="showUsername">Username:</label>
-        <select  v-if="user.isAdmin === 'true'" class="form-control" id="showUserName2" v-model="selectedUser">
-          <option v-for="user of users" :key="user.id" :value="user.id">
-            {{ user.username }}
-          </option>
-        </select>
-        <input type="text" v-if="user.isAdmin !== 'true'" :value="user.userName" disabled class="form-control" /> 
-      </div>
-    </div>
-    <div class="row">
-      <form
-        class="form-inline showTime"
-        method="post"
-        action="#"
-        @submit="getTimeEvaluate($event)"
-      >
-        <div class="form-group mb-2">
-          <label for="datum">Monat / Jahr :</label>
+    <div class="d-flex justify-content-between" style="margin-top: 40px">
+      <div class="form-group mb-2 w-75">
+        <div class="input-group">
+          <label for="Username" id="showUsername" class="input-group-text"
+            >Username:</label
+          >
+          <select
+            v-if="user.isAdmin === 'true'"
+            class="form-select"
+            id="showUserName2"
+            v-model="selectedUser"
+          >
+            <option v-for="user of users" :key="user.id" :value="user.id">
+              {{ user.username }}
+            </option>
+          </select>
+          <input
+            type="text"
+            v-if="user.isAdmin !== 'true'"
+            :value="user.userName"
+            disabled
+            class="form-control input-group-text"
+          />
+          <label for="datum" class="input-group-text">Monat / Jahr :</label>
           <input
             v-model="filterDate"
             type="month"
@@ -27,9 +31,14 @@
             id="zeitErfassenDate"
             required
           />
+          <button
+            class="btn btn-primary showAddedTimes"
+            @click="getTimeEvaluate($event)"
+          >
+            Auswerten
+          </button>
         </div>
-        <button class="btn btn-primary mb-2 showAddedTimes">Auswerten</button>
-      </form>
+      </div>
       <button class="btn btn-primary mb-2 showAddedTimes" @click="downloadEx()">
         Monat drucken
       </button>
