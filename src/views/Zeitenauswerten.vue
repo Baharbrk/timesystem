@@ -1,21 +1,8 @@
 <template>
-  <div class="container">
-    <div class="d-flex justify-content-between" style="margin-top: 40px">
-      <div class="form-group mb-2 w-75">
+  <div class="container" style="margin-top:2%; width:75%">
+    <div class="d-flex justify-content-start" style="margin-top: 40px">
+      <div class="form-group mb-2 w-30">
         <div class="input-group">
-          <label for="Username" id="showUsername" class="input-group-text"
-            >Username:</label
-          >
-          <select
-            v-if="user.isAdmin === 'true'"
-            class="form-select"
-            id="showUserName2"
-            v-model="selectedUser"
-          >
-            <option v-for="user of users" :key="user.id" :value="user.id">
-              {{ user.username }}
-            </option>
-          </select>
           <input
             type="text"
             v-if="user.isAdmin !== 'true'"
@@ -23,34 +10,36 @@
             disabled
             class="form-control input-group-text"
           />
-          <label for="datum" class="input-group-text">Monat / Jahr :</label>
+          <label for="datum" class="input-group-text">Search (Month/Year):</label>
           <input
             v-model="filterDate"
             type="month"
             class="form-control"
             id="zeitErfassenDate"
             required
+            @keyup.enter="getTimeEvaluate($event)"
           />
           <button
             class="btn btn-primary showAddedTimes"
             @click="getTimeEvaluate($event)"
           >
-            Auswerten
+              <i class="bi bi-list-check me-1" /><span>Show Result</span>
           </button>
         </div>
       </div>
       <button class="btn btn-primary mb-2 showAddedTimes" @click="downloadEx()">
-        Monat drucken
+          <i class="bi bi-download me-1" />
+          <span>Download in CSV</span>
       </button>
     </div>
     <div id="showZeitAuswerten">
       <table class="table zeitErfassenTable" id="zeiterfassenTabelle">
         <thead>
           <tr>
-            <th scope="col">Datum</th>
-            <th scope="col">SOLL Arbeitszeit</th>
-            <th scope="col">IST Arbeitszeit</th>
-            <th scope="col">Differenz</th>
+            <th scope="col">Date</th>
+            <th scope="col">Target Working Hours</th>
+            <th scope="col">Actual Working Hours</th>
+            <th scope="col">Difference</th>
           </tr>
         </thead>
         <tbody class="showTimeTable">
@@ -66,13 +55,13 @@
       </table>
     </div>
     <div id="totalTime">
-      <table v-if="totalTime">
+      <table v-if="totalTime" class="table table-striped table-responsive">
         <thead>
           <tr>
-            <th scope="col">Summe SOLL</th>
-            <th scope="col">Summe IST</th>
-            <th scope="col">Summe DIFFERENZ</th>
-            <th scope="col">Summe DIFFERENZ GESAMT</th>
+            <th scope="col">Sum of Target Hours</th>
+            <th scope="col">Sum of Actual Hours</th>
+            <th scope="col">Sum of Difference</th>
+            <th scope="col">Summ of Total Difference</th>
           </tr>
         </thead>
         <tbody>

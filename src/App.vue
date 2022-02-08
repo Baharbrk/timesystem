@@ -1,63 +1,67 @@
 <template>
-  <div id="app">
-    <nav
-      v-if="username"
-      id="navbar"
-      class="navbar navbar-expand-lg navbar-light bg-light"
-    >
-      <div class="container">
-        <router-link class="navbar-brand" to="/zeiterfassen"
-          ><h1>TIME SYSTEM</h1>
-        </router-link>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          @click="toggleMenu()"
+    <div id="app">
+        <nav
+            v-if="username"
+            id="navbar"
+            class="navbar navbar-expand-lg navbar-light bg-light"
         >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <router-link to="/zeiterfassen" class="nav-link"
-                >Zeiten erfassen</router-link
-              >
-            </li>
-            <li class="nav-item">
-              <router-link to="/zeitenauswerten" class="nav-link"
-                >Zeiten auswerten</router-link
-              >
-            </li>
-            <li class="nav-item">
-              <router-link to="/Verwaltung" v-show="isAdmin" class="nav-link"
-                >Verwaltung</router-link
-              >
-            </li>
-          </ul>
-        </div>
-        <span id="label_user">{{ username || "nicht eingeloggt" }}</span>
-        <a
-          v-if="username"
-          class="nav-link d-md-none d-lg-block logout"
-          v-on:click="logOutUser"
-          href="#"
-          title="Log out"
-          >
-          <i class="bi bi-box-arrow-right fs-3"
-        /></a>
-      </div>
-    </nav>
-    <router-view name="Zeiterfassen" :users="users"></router-view>
-    <router-view name="Zeitkorriegieren" :users="users"></router-view>
-    <router-view name="Zeitenauswerten" :users="users"></router-view>
-    <router-view name="Calendar" :users="users"></router-view>
-    <router-view />
-  </div>
+            <div class="container">
+                <router-link class="navbar-brand" to="/zeiterfassen"
+                ><h1>TIME SYSTEM</h1>
+                </router-link>
+                <button
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    data-target="#navbarSupportedContent"
+                    data-toggle="collapse"
+                    type="button"
+                    @click="toggleMenu()"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/zeiterfassen"
+                            >Add Time
+                            </router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/zeitenauswerten"
+                            >Evaluate Time
+                            </router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link v-show="isAdmin" class="nav-link" to="/Verwaltung"
+                            >User Administration
+                            </router-link
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <span id="label_user">{{ username || 'nicht eingeloggt' }}</span>
+                <a
+                    v-if="username"
+                    class="nav-link d-md-none d-lg-block logout"
+                    href="#"
+                    title="Log out"
+                    v-on:click="logOutUser"
+                >
+                    <i class="bi bi-box-arrow-right fs-3"
+                    /></a>
+            </div>
+        </nav>
+        <router-view :users="users" name="Zeiterfassen"></router-view>
+        <router-view :users="users" name="Zeitkorriegieren"></router-view>
+        <router-view :users="users" name="Zeitenauswerten"></router-view>
+        <router-view :users="users" name="Calendar"></router-view>
+        <router-view/>
+        <div :class="`bg ${bgLight}`"/>
+    </div>
 </template>
 
 <script src="./App.js"></script>

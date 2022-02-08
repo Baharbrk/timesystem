@@ -79,7 +79,7 @@ export default Vue.extend({
     },
     getRowBackground(dateDifferenz) {
       return {
-        backgroundColor: dateDifferenz.includes("-") ? "#ff9999" : "#ccffcc",
+        backgroundColor: dateDifferenz.includes("-") ? "#FF5722" : "#9CCC65",
       };
     },
     downloadEx() {
@@ -91,7 +91,6 @@ export default Vue.extend({
       const downloadLink = document.createElement("a");
 
       document.body.appendChild(downloadLink);
-      alert("Ihr Dokument wird jetzt gedruckt und ist für den Download bereit.");
       const headRow = ["User", "Monat/Jahr", "Summe SOLL", "Summe IST", "Summe DIFFERENZ", "SUMME DIFFERENZ GESAMT"];
       const dataRow = [userId, this.filterDate, this.totalTime.summeSoll,this.totalTime.summeIst, this.totalTime.summeDiff, this.totalTime.summeDiffGesamt]
       const csvData = `${headRow.join(',')}\n${dataRow.join(',')}`;

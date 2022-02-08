@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <h1 style="margin-top: 25px" align="center">Welcome to Time system</h1>
-    <div id="loginContent">
+    <h1 style="margin-top: 25px" align="left">Welcome to Time system</h1>
+    <div id="loginContent" style="float:left;">
         <form id="loginForm" action="#" method="post" v-on:submit="login($event)">
             <div class="form-group">
                 <label for="email"><h4>Username:</h4></label>

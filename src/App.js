@@ -16,6 +16,10 @@ export default Vue.extend({
     beforeMount() {
         this.checkLoginState();
     },
+    computed: {
+        bgLight() { console.log(this.$route.path);
+        return !['', '/'].includes(this.$route.path) ? 'light' : '' }
+    },
     methods: {
         checkLoginState() {
             this.$data.username = sessionStorage.getItem("userName");
